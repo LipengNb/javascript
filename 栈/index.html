@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>栈</title>
+</head>
+<body>
+  <script type="text/javascript" src="对象-实现栈.js"></script>
+  <script type="text/javascript" src="10进制转2进制.js"></script>
+  <script>
+    /**
+     * 开发者使用下划线命名来约定一个私有的属性，这种方式只是一种约定，并不能保护数据
+     * ES2015新增了一种叫作Symbol的基本类型，它是不可变的，可以用作对象的属性
+     * */ 
+
+    // console.log('---------------------------- Symbol私有(假的)-实现栈 ----------------------------')
+
+    // const _items = Symbol('stackItems')
+    // class StackPrivate {
+    //   constructor() {
+    //     this[_items] = []
+    //   }
+    //   push(element) {
+    //     this[_items].push(element)
+    //   }
+    // }
+
+    // const privateStack = new StackPrivate()
+    // privateStack.push(10)
+    // privateStack.push(11)
+    // let objectSymbol = Object.getOwnPropertySymbols(privateStack)
+    // console.log(privateStack[objectSymbol[0]])
+    // console.log(privateStack)
+
+    // console.log('---------------------------------------------------------------------------------')
+
+    // console.log('------------------------------- WeakMap私有-实现栈 -------------------------------')
+
+    // const items = new WeakMap()
+
+    // class WeakMapStack {
+    //   constructor() {
+    //     items.set(this, [])
+    //   }
+    //   push(element) {
+    //     const s = items.get(this)
+    //     s.push(element)
+    //   }
+    //   pop() {
+    //     const s = items.get(this)
+    //     return s.pop()
+    //   }
+    // }
+    // const weakMap = new WeakMapStack()
+    // weakMap.push(12)
+    // console.log(weakMap.pop())
+    // console.log(items)
+
+
+    // console.log('----------------------------------------------------------------------------------')
+  </script>
+</body>
+</html>

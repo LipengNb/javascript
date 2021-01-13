@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>队列</title>
+</head>
+
+<body>
+  <p>
+    队列和栈非常类似，但是使用了与后进先出不同的原则。队列是遵循先进先出(FIFO，也称先来先服务)
+    在现实中，最常见的队列就是排队
+  </p>
+  <ol>
+    <li>队列数据结构</li>
+    <li>双端队列数据结构</li>
+    <li>向队列和双队列增加元素</li>
+    <li>向队列和双队列中删除元素</li>
+    <li></li>
+  </ol>
+  <script type="text/javascript" src="队列.js"></script>
+  <!-- <script type="text/javascript" src="双端队列.js"></script> -->
+  <p>击鼓传花游戏</p>
+  <script>
+    console.log('---------------------------- 击鼓传花游戏 ----------------------------')
+    function hotPotato(elementsList, num) {
+      const queue = new Queue()
+      const elimitatedList = []
+
+      for (let i = 0; i < elementsList.length; i++) {
+        queue.enqueue(elementsList[i])
+      }
+      while(queue.size() > 1) {
+        for (let i = 0; i < num; i++) {
+          queue.enqueue(queue.dequeue())
+        }
+        elimitatedList.push(queue.dequeue())
+      }
+      return {
+        eliminated: elimitatedList,
+        winner: queue.dequeue()
+      }
+    }
+    const names = ['John', 'Jack', 'Camila', 'Ingrid', 'Carl']
+    const winner = hotPotato(names, 7)
+    // console.log(winner)
+    let num = 3;
+    while(num > 1) {
+      num--
+      for (let i = 0; i < names.length; i++) {
+        console.log('i', i)
+      }
+      console.log('num', num)
+    }
+  </script>
+</body>
+</html>
