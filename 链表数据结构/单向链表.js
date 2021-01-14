@@ -33,13 +33,11 @@ class LinkedList {
 			const node = new Node(element)
 			let current = this.head
 			if (index === 0) {
-
+				node.next = current
+				this.head = node
 			} else {
 				const previous = this.getElementAt(index - 1)
-				current = previous.next
-				node.next = current
-				current = node
-				this.count ++
+				
 			}
 		}
 		return false
