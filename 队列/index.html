@@ -19,21 +19,34 @@
     <li></li>
   </ol>
   <script type="text/javascript" src="队列.js"></script>
-  <!-- <script type="text/javascript" src="双端队列.js"></script> -->
+  <script type="text/javascript" src="双端队列.js"></script>
   <p>击鼓传花游戏</p>
   <script>
     console.log('---------------------------- 击鼓传花游戏 ----------------------------')
+    
     function hotPotato(elementsList, num) {
+      // 1.创建一个队列实例对象
       const queue = new Queue()
+      // 2.淘汰名单
       const elimitatedList = []
-
+      // 3.将参与的人名都加入队列
       for (let i = 0; i < elementsList.length; i++) {
         queue.enqueue(elementsList[i])
       }
+      // 4.队列的个数大于1 就不断重复循环
       while(queue.size() > 1) {
+        // 5.1 第一次重复 执行循环体 （会执行4次）
         for (let i = 0; i < num; i++) {
+          // 6.1 执行7次后 队列的顺序: ['Camila', 'Ingrid', 'Carl', 'John', 'Jack']
+          // 6.2 执行7次后 队列的顺序: ['Jack', 'Ingrid', 'Carl', 'John']
+          // 6.3 执行7次后 队列的顺序: ['Carl', 'John', 'Ingrid']
+          // 6.4 执行7次后 队列的顺序: ['Ingrid', 'John']
           queue.enqueue(queue.dequeue())
         }
+        // 7.1 向淘汰名单添加一个 Camila 出列的元素 后 队列个数: ['Ingrid', 'Carl', 'John', 'Jack']
+        // 7.2 向淘汰名单添加一个 Jack 出列的元素 后 队列个数: ['Ingrid', 'Carl', 'John']
+        // 7.3 向淘汰名单添加一个 Carl 出列的元素 后 队列个数: ['John', 'Ingrid']
+        // 7.4 向淘汰名单添加一个 Ingrid 出列的元素 后 队列个数: ['John']
         elimitatedList.push(queue.dequeue())
       }
       return {
@@ -43,15 +56,35 @@
     }
     const names = ['John', 'Jack', 'Camila', 'Ingrid', 'Carl']
     const winner = hotPotato(names, 7)
-    // console.log(winner)
-    let num = 3;
-    while(num > 1) {
-      num--
-      for (let i = 0; i < names.length; i++) {
-        console.log('i', i)
+
+    console.log(winner)
+
+    console.log('------------------------------ 回文检查 ------------------------------')
+    function palindromeChecker(aString) {
+      if (aString === undefined || aString === null || (aString !== null && aString.length === 0)) {
+        return false
       }
-      console.log('num', num)
+      const deque = new Deque()
+      const lowerString = aString.toLocaleLowerCase().split(' ').join('')
+      let isEqual = true
+      let firstChar, lastChar
+      
+      for (let i = 0; i < lowerString.length; i++) {
+        deque.addBack(lowerString.charAt(i))
+      }
+
+      while(deque.size() > 1 && isEqual) {
+        firstChar = deque.removeFront()
+        lastChar = deque.removeBack()
+        if (firstChar !== lastChar) {
+          isEqual = false
+        }
+      }
+      return isEqual
     }
+
+    console.log('a', palindromeChecker('abba'))
+    
   </script>
 </body>
 </html>

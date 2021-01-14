@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  
+  <script>
+    const merchandise = {
+      variations: [
+        {
+          name: '颜色',
+          values: [
+            { name: '白色' },
+            { name: '红色' },
+          ]
+        },
+        {
+          name: '尺码',
+          values: [
+            { name: '39' },
+            { name: '40' },
+          ]
+        },
+        {
+          name: '性别',
+          values: [
+            { name: '男' },
+            { name: '女' },
+          ]
+        },
+        {
+          name: '身高',
+          values: [
+            {
+              name: '1.75',
+              name: '1.80'
+            }
+          ]
+        }
+      ],
+      products: [
+        {
+          id: 1,
+          variationMappings: [
+            { name: '颜色', value: '白色' },
+            { name: '尺码', value: '39' },
+            { name: '性别', value: '男' }
+          ]
+        }
+        // 下面还有7个商品，我就不重复了
+      ]
+    }
+    
+    function buildTree(apiData) {
+      const tree = {}
+      const { variations, products } = apiData
+
+      addNode(tree, 0)
+      function addNode(root, deep) {
+        const variationName = variations[deep].name
+        const variationValues = variations[deep].values
+        for (let i = 0; i < variationValues.length; i++) {
+          const nodeName = `${variationName}: ${variationValues[i].name}`
+          if (deep === 2) {
+            root[nodeName] = null
+          } else {
+            root[nodeName] = {}
+            addNode(root[nodeName], deep + 1)
+          }
+        }
+        for (let i = 0; i < products.length; i++ ) {
+          const product = products[i]
+          const { variationMappings } = product
+          const level1Name = `${variationMappings[0].name}: ${variationMappings[0].value}`
+          const level2Name = `${variationMappings[1].name}: ${variationMappings[1].value}`
+          const level3Name = `${variationMappings[2].name}: ${variationMappings[2].value}`
+          tree[level1Name][level2Name][level3Name] = product
+        }
+      }
+      return tree
+    }
+
+    console.log(buildTree(merchandise))
+
+  </script>
+</body>
+</html>
