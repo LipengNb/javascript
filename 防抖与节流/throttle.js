@@ -1,38 +1,25 @@
 (function(doc) {
 
-  const oInput = doc.querySelector('#inputName')
-
-  oInput.addEventListener('input', throttle(function() {
-    console.log('sss')
-  }), 1000)
-
   function throttle(fn, wait){
     var timer = null;
-    return function(){
-      var context = this;
-      var args = arguments;
+    return (...args) => {
       if(!timer){
-        timer = setTimeout(function(){
-          fn.apply(context, args)
+        timer = setTimeout(() => {
+          fn.apply(this, args)
           timer = null
         },wait)
       }
     }
   }
 
-  // function throttle(fn, time) {
-  //   let t = null
-  //   let pre = Date.now()
-  //   return (...args) => {
-  //     let now = Date.now()
-  //     clearTimeout(t)
-  //     const differ = now - pre
-  //     console.log(differ)
-  //     if (differ >= time) {
-  //       fn.apply(this, args)
-  //       pre = Date.now()
-  //     }
-  //   }
-  // }
+  const oInput = doc.querySelector('#inputName')
+
+  oInput.addEventListener('input', throttle(function () {
+    console.log(oInput.value)
+  }, 1000))
+
+  window.onscroll = throttle(function() {
+    console.log('111')
+  }, 1000)
 
 })(document)
