@@ -1,0 +1,177 @@
+p{
+  padding: 0;
+  margin: 0;
+}
+
+.Boson{
+  display: flex;
+  flex-wrap: wrap;
+}
+/* ----------------------------------- 色子6个面 ----------------------------------- */
+.box{
+  width: 100px;
+  height: 100px;
+  margin-right: 20px;
+  padding: 10px;
+  border-radius: 6px;
+  box-sizing: border-box;
+  display: flex;
+  flex-wrap: wrap;
+  border: 2px solid #eee;
+}
+.item{
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background-color: #ccc;
+}
+/* 1 */
+.face1{
+  align-items: center;
+  justify-content: center;
+}
+.face1 .item{
+  width: 30px;
+  height: 30px;
+}
+
+/* 2 */
+.face2{
+  justify-content: space-between;
+}
+.face2 .item:nth-child(2){
+  align-self: flex-end;
+}
+
+/* 3 */
+.face3{
+  justify-content: space-between;
+}
+.face3 .item{
+  width: 20px;
+  height: 20px;
+}
+.face3 .item:nth-child(2){
+  align-self: center;
+}
+.face3 .item:nth-child(3){
+  align-self: flex-end;
+}
+
+/* 4 */
+.face4{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+.face4 .row{
+  display: flex;
+  flex-basis: 100%;
+  justify-content: space-between;
+}
+.face4 .row:nth-child(2){
+  align-items: flex-end;
+}
+
+/* 5 */
+.face5{
+  flex-direction: column;
+  justify-content: space-between;
+}
+.face5 .row{
+  display: flex;
+  justify-content: space-between;
+}
+.face5 .row:nth-child(2){
+  display: flex;
+  justify-content: center;
+}
+.face6{
+  flex-direction: column;
+  justify-content: space-between;
+}
+.face6 .row{
+  display: flex;
+  justify-content: space-around;
+}
+
+/* ----------------------------------- 水平垂直居中 ----------------------------------- */
+
+.block{
+  width: 200px;
+  height: 200px;
+  border: 1px solid #ccc;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* position: relative; */
+  /* display: table;
+  display: table-cell;
+  vertical-align: middle; */
+}
+.block span{
+  width: 100px;
+  height: 40px;
+  line-height: 40px;
+  /* position: absolute; */
+  /* left: 50%; */
+  /* top: 50%; */
+  /* transform: translate(-50px, -50%); */
+  /* margin: 0 auto; */
+  background-color: yellow;
+  display: block;
+}
+/* span:not(:last-child){
+  margin-bottom: 10px;
+} */
+
+/* ----------------------------------- 1rem 1em 1vh 1px各自代表的含义 ----------------------------------- */
+html{
+  font-size: 10px;
+}
+.unit{
+  width: 200px;
+  height: 200px;
+  font-size: 10px;
+  position: relative;
+  border: 1px solid #ccc;
+}
+.unit .text{
+  font-size: 2em;
+}
+
+.unit .text2{
+  width: 4rem;
+  height: 2rem;
+  background-color: red;
+}
+
+.unit .line{
+  width: 100%;
+  border: 1px solid #ccc;
+}
+
+
+.box-float{
+  width: 300px;
+  /* overflow: hidden; */
+  display: block;
+  border: 1px solid #ccc;
+}
+.box-float .box{
+  width: 100px;
+  height: 100px;
+  /* float: left; */
+  background-color: pink;
+}
+.box-float .box:nth-child(1){
+  height: 200px;
+  float: left;
+}
+/* .claerfix::after{
+  content: '';
+  display: block;
+  clear: both;
+  zoom: 1;
+} */
