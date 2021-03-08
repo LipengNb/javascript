@@ -29,7 +29,7 @@ class LinkedList {
 		this.count++
 	}
 	insert(element, index) {
-		if (index >= 0 && index < this.count) {
+		if (index >= 0 && index <= this.count) {
 			const node = new Node(element)
 			let current = this.head
 			if (index === 0) {
@@ -37,8 +37,12 @@ class LinkedList {
 				this.head = node
 			} else {
 				const previous = this.getElementAt(index - 1)
-				
+				current = previous.next
+				node.next = current
+				previous.next = node
 			}
+			this.count++
+			return true
 		}
 		return false
 	}
@@ -89,7 +93,15 @@ class LinkedList {
 	size() {
 		return this.count
 	}
-	toString() {}
+	toString() {
+		let node = this.head.next
+		let objString = `${this.head.element}`
+		for (let i = 1; i < this.count && node !== null; i++) {
+			objString = `${objString}, ${node.element}`
+			node = node.next
+		}
+		return objString
+	}
 }
 
 const linkeds = new LinkedList()
@@ -99,12 +111,17 @@ linkeds.push('Bill')
 linkeds.push('Mark')
 linkeds.push('Jack')
 
-console.log(linkeds.removeAt(2))
-console.log(linkeds.removeAt(0))
-console.log(linkeds.remove('Jack'))
+// console.log(linkeds.removeAt(2))
+// console.log(linkeds.removeAt(0))
+// console.log(linkeds.remove('Jack'))
 
 linkeds.insert('张三', 0)
+linkeds.insert('小王', 1)
+linkeds.insert('last', linkeds.size())
+console.log(linkeds.toString())
 console.log('链表', linkeds)
+
+console.error('ss')
 
 
 
