@@ -5,19 +5,13 @@ console.log('----------------------------------- 链表数据结构 ------------
 class LinkedList {
 	constructor(equalsFn = defaultEquals) {
 		this.count = 0
-		this.items = null
-		this.equalsFn = equalsFn
+		this.head = null
+		this.equalsFn = defaultEquals
 	}
+	// 项链表追加元素
 	push(element) {
 		const node = new Node(element)
-		/**
-		 * 1. 添加第一个元素 head = node
-		 * 2. 添加第二个元素 current.next = null 不会走while() current.next = node
-		 * 3. 添加第三个元素 此时的current.next -> 第二个元素 所以会走while() 直到current.next = null 的时候退出循环
-		 *  	最后一次循环 current = current.next 就找到了最后一个元素节点
-		 * 4. current.next = node
-		 * */ 
-		if (this.isEmpty()) {
+		if (this.head === null) {
 			this.head = node
 		} else {
 			let current = this.head
@@ -28,9 +22,14 @@ class LinkedList {
 		}
 		this.count++
 	}
+	// 指定位置插入 元素
 	insert(element, index) {
 		if (index >= 0 && index <= this.count) {
+<<<<<<< HEAD
 			const node = new Node(element)
+=======
+			let node = new Node(element)
+>>>>>>> 123782bfdbfdda69b57d9111a59ca4b00b0ac6e8
 			let current = this.head
 			if (index === 0) {
 				node.next = current
@@ -46,10 +45,12 @@ class LinkedList {
 		}
 		return false
 	}
+	// 根据元素删除节点
 	remove(element) {
 		const index = this.indexOf(element)
 		return this.removeAt(index)
 	}
+	// 根据索引删除节点
 	removeAt(index) {
 		if (index >= 0 && index < this.count) {
 			let current = this.head
@@ -65,10 +66,10 @@ class LinkedList {
 		}
 		return undefined
 	}
-	// 返回元素在链表中的索引位置 如果没找到 返回-1
+	// 查找该元素在链表中的索引 并返回 未找到 返回 -1
 	indexOf(element) {
 		let current = this.head
-		for (let i = 0; i < this.count; i++) {
+		for (let i = 0; i < this.count && this.head !== null; i++) {
 			if (this.equalsFn(element, current.element)) {
 				return i
 			}
@@ -76,26 +77,35 @@ class LinkedList {
 		}
 		return -1
 	}
-	// 返回链表终特定位置的元素。如果链表中不存在这样的元素，则返回undefined
+	// 根据索引返回当前的链表节点
 	getElementAt(index) {
-		if (index >= 0 && index < this.count) {
-			let node = this.head
-			for (let i = 0; i < index && this.head !== null; i++) {
-				node = node.next
+		if (index >= 0 && index <= this.count) {
+			let current = this.head
+			for (let i = 0; i < index && current !== null; i++) {
+				current = current.next
 			}
-			return node
+			return current
 		}
 		return undefined
 	}
+	// 链表中不包含任何元素 返回true
 	isEmpty() {
 		return this.size() === 0
 	}
+	// 返回链表个数
 	size() {
 		return this.count
 	}
+<<<<<<< HEAD
 	toString() {
 		let node = this.head.next
 		let objString = `${this.head.element}`
+=======
+	// 返回链表中所有的元素
+	toString() {
+		let objString = `${this.head.element}`
+		let node = this.head.next
+>>>>>>> 123782bfdbfdda69b57d9111a59ca4b00b0ac6e8
 		for (let i = 1; i < this.count && node !== null; i++) {
 			objString = `${objString}, ${node.element}`
 			node = node.next
@@ -104,6 +114,7 @@ class LinkedList {
 	}
 }
 
+<<<<<<< HEAD
 const linkeds = new LinkedList()
 
 linkeds.push('Jhon')
@@ -426,3 +437,19 @@ console.error('ss')
 // linked.insert('李四', 0)
 // linked.insert('王五', 2)
 // console.log('链表:', linked)
+=======
+const links = new LinkedList()
+
+links.push('Jhon')
+links.push('Mark')
+links.push('Jack')
+links.removeAt(3)
+// links.insert('jude', 1)
+// links.insert('before', 2)
+// links.insert('第一', 0)
+// links.push('sss')
+// console.log(links.remove('Jhon'))
+// console.log(links.remove('第一'))
+console.log(links.toString())
+console.log(links)
+>>>>>>> 123782bfdbfdda69b57d9111a59ca4b00b0ac6e8

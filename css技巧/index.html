@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="./index.css">
+  <title>css技巧</title>
+</head>
+<body>
+  <h4>input 样式</h4>
+  <input class="enter-name" type="text" placeholder="请输入姓名">
+  <h4>单行文本溢出 和 多行文本溢出</h4>
+  <div class="text-box text-one">
+    每个对象都可以有一个原型_proto_，这个原型还可以有它自己的原型，以此类推，形成一个原型链。查找特定属性的时候，我们先去这个对象里去找，如果没有的话就去它的原型对象里面去，如果还是没有的话再去向原型对象的原型对象里去寻找
+  </div>
+  <div class="text-box text-n">
+    每个对象都可以有一个原型_proto_，这个原型还可以有它自己的原型，以此类推，形成一个原型链。查找特定属性的时候，我们先去这个对象里去找，如果没有的话就去它的原型对象里面去，如果还是没有的话再去向原型对象的原型对象里去寻找
+  </div>
+  <h4>修改滚动条样式</h4>
+  <div class="scroll-box">
+    <h6>什么是原型链？</h6>
+    <p class="text">
+      每个对象都可以有一个原型_proto_，这个原型还可以有它自己的原型，以此类推，形成一个原型链。查找特定属性的时候，我们先去这个对象里去找，如果没有的话就去它的原型对象里面去，如果还是没有的话再去向原型对象的原型对象里去寻找...... 这个操作被委托在整个原型链上，这个就是我们说的原型链了。
+    </p>
+    <h6>原型指针</h6>
+    <p class="text">
+      我们知道了原型的概念，接下来我们就照着上面的图来具体分析一下原型的指针；中间最上面蓝色模块标注的构造函数Foo, 里面有两个属性： _proto_ 和 prototype, 这两个很容易使人混淆，先说说prototype:
+    </p>
+    <h6>prototype</h6>
+    <p class="text">
+      prototype属性，它是函数所独有的，它是从一个函数指向一个对象。它的含义是函数的原型对象，也就是这个函数（其实所有函数都可以作为构造函数）所创建的实例的原型对象; 这个属性是一个指针，指向一个对象，这个对象的用途就是包含所有实例共享的属性和方法（我们把这个对象叫做原型对象）;
+    </p>
+    <h6>__proto__</h6>
+    <p class="text">
+      __proto__ 是原型链查询中实际用到的，它总是指向 prototype，换句话说就是指向构造函数的原型对象，它是对象独有的。注意，为什么Foo构造也有这个属性呢，因为再js的宇宙里万物皆对象，包括函数；
+      根据以上的概括我们能知道Foo构造函数_proto_指向的是他的构造函数的原型对象，它的构造函数是Function, 也就是说Foo的_proto_指向Function.prototype,  我们再看到左边绿色的a和b函数的_proto_指像的是Foo.prototype,因为他们是通过 new Foo实例化出来的，它们的构造函数就是Foo(), 即a._proto_ = Foo.prototype；  接着我们来看看最右边紫色的模块Function.prororype, 它的_proto_指针指向的是Object.prototype,Object._proto_又为null.。于是我们就可以得出：在原型链中的指向是，函数 → 构造行数  → Function.prototype → Object.protype → null ;
+    </p>
+  </div>
+  <h4>虚线框绘制技巧</h4>
+  <p class="dotted-line">庭院深深，不知有多深？杨柳依依，飞扬起片片烟雾，一重重帘幕不知有多少层。</p>
+  <h4>卡券效果制作</h4>
+  <div class="coupon">
+    <span>200</span>优惠券
+  </div>
+</body>
+</html>

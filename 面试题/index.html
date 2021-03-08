@@ -1,0 +1,39 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>事件冒泡</title>
+    <style>
+      .parEle{
+        width: 200px;
+        height: 200px;
+        border: 1px solid #333;
+      }
+      .sonEle{
+        width: 100px;
+        height: 100px;
+        border: 1px solid #ccc;
+      }
+    </style>
+</head>
+<body>
+    <div id="parEle" class="parEle">
+      我是父元素
+      <div id="sonEle" class="sonEle">我是子元素</div>
+    </div>
+</body>
+</html>
+<script type="text/javascript" src="./index.js"></script>
+<script>
+  const str = 'abca12abbc121d';
+  const obj = {}
+
+  for (let i = 0; i < str.length; i++) {
+    const item = str[i]
+    if (!obj[item]) {
+      obj[item] = 1
+    } else {
+      obj[item]++
+    }
+  }
+  console.log(obj.valueOf())
+</script>
